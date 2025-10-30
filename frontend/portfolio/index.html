@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="sytle.css">
+</head>
+
+<body>
+<main>
+    <div class="container">
+        <div class="introducao">
+            <h1>Olá eu sou..</h1>
+            <div class="profile-content">
+                <div class="profile-image">
+                    <img src="https://avatars.githubusercontent.com/u/180117799?s=400&u=055b2913c99fba6452909a567608111958d9b898&v=4" alt="Imagem Perfil" width="300">
+                </div>
+                <div class="informacao">
+                    <h2>Guilherme</h2>
+                    <p>Ocupação: Estudante de Densenvolvimento de Sistema</p>
+                    <p>Idade: 18 anos</p>
+                    <p>Localização: Brasil</p>
+                    <p>Contato: </p>
+                    <a href="https://github.com/guylhermezxs"><button>GitHub</button></a>
+                </div>
+            </div>
+        </div>
+        <div class="content-box">
+            <section class="content-section">
+                <!-- Accordion com várias seções dentro de content-box -->
+                <div class="accordion" id="mainAccordion">
+                    <div class="accordion-item">
+                        <button class="accordion-header" id="header-skills" aria-expanded="false" aria-controls="panel-skills">
+                            Skills <span class="caret">▾</span>
+                        </button>
+                        <div class="accordion-panel" id="panel-skills" role="region" aria-labelledby="header-skills">
+                            <ul>
+                                <li>HTML</li>
+                                <li>CSS</li>
+                                <li>Java</li>
+                                <li>C</li>
+                                <li>MySQL</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header" id="header-idiomas" aria-expanded="false" aria-controls="panel-idiomas">
+                            Idiomas <span class="caret">▾</span>
+                        </button>
+                        <div class="accordion-panel" id="panel-idiomas" role="region" aria-labelledby="header-idiomas">
+                            <ul>
+                                <li>Português — Nativo</li>
+                                <li>Inglês — Basico</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header" id="header-portfolio" aria-expanded="false" aria-controls="panel-portfolio">
+                            Portfólio <span class="caret">▾</span>
+                        </button>
+                        <div class="accordion-panel" id="panel-portfolio" role="region" aria-labelledby="header-portfolio">
+                            <p>Projetos:</p>
+                            <ul>
+                                <li>Sem projetos por enquanto....</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header" id="header-experiencia" aria-expanded="false" aria-controls="panel-experiencia">
+                            Experiência Profissional <span class="caret">▾</span>
+                        </button>
+                        <div class="accordion-panel" id="panel-experiencia" role="region" aria-labelledby="header-experiencia">
+                            <p>Sem experiência profissional formal ainda.:</p>
+                            <ul>
+                                <li>Em aprendizagem</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</main>
+</main>
+
+<script>
+// Accordion: toggle panels, close on outside click or Escape
+(function () {
+    const headers = document.querySelectorAll('.accordion-header');
+
+    function closeAll() {
+        headers.forEach((h) => {
+            h.setAttribute('aria-expanded', 'false');
+            const panel = document.getElementById(h.getAttribute('aria-controls'));
+            if (panel) panel.style.maxHeight = null;
+            h.parentElement.classList.remove('open');
+        });
+    }
+
+    headers.forEach((h) => {
+        const panel = document.getElementById(h.getAttribute('aria-controls'));
+
+        // click para abrir/fechar
+        h.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = h.getAttribute('aria-expanded') === 'true';
+            if (isOpen) {
+                h.setAttribute('aria-expanded', 'false');
+                if (panel) panel.style.maxHeight = null;
+                h.parentElement.classList.remove('open');
+            } else {
+                h.setAttribute('aria-expanded', 'true');
+                if (panel) panel.style.maxHeight = panel.scrollHeight + 'px';
+                h.parentElement.classList.add('open');
+            }
+        });
+
+        // teclado: Enter e Space abrem/fecham
+        h.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                h.click();
+            }
+        });
+    });
+
+    // Fecha ao clicar fora do accordion
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.accordion')) closeAll();
+    });
+
+    // Fecha com Esc
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeAll();
+    });
+})();
+</script>
+
+</body>
+</html>
